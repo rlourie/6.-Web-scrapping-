@@ -54,27 +54,28 @@ def get_the_right(articles, KEYWORDS):
     print(f'Найдено {counter}')
 
 
-HEADERS = {
-    'Cookie': 'feature_streaming_comments=true; _ym_uid=1645048962634853152; _ym_d=1645048962; _ym_isad=2; '
-              '_ga=GA1.2.1326318411.1645048962; _gid=GA1.2.1335107927.1645048962; fl=ru; hl=ru; '
-              '__gads=ID=9a751927c8924d92:T=1645092324:S=ALNI_MbbpqCZMhdGzJ0KCvBoL6ca7vwtXw',
-    'Host': 'habr.com',
-    'Referer': 'https://github.com/netology-code/py-homeworks-advanced/tree/master/6.Web-scrapping',
-    'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"',
-    'sec-ch-ua-mobile': '?0',
-    'sec-ch-ua-platform': '"Windows"',
-    'Sec-Fetch-Dest': 'document',
-    'Sec-Fetch-Mode': 'navigate',
-    'Sec-Fetch-Site': 'same-origin',
-    'Sec-Fetch-User': '?1',
-    'Upgrade-Insecure-Requests': '1',
-    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36""'}
-KEYWORDS = ['дизайн', 'фото', 'web', 'python', 'it']
+if __name__ == "__main__":
+    HEADERS = {
+        'Cookie': 'feature_streaming_comments=true; _ym_uid=1645048962634853152; _ym_d=1645048962; _ym_isad=2; '
+                  '_ga=GA1.2.1326318411.1645048962; _gid=GA1.2.1335107927.1645048962; fl=ru; hl=ru; '
+                  '__gads=ID=9a751927c8924d92:T=1645092324:S=ALNI_MbbpqCZMhdGzJ0KCvBoL6ca7vwtXw',
+        'Host': 'habr.com',
+        'Referer': 'https://github.com/netology-code/py-homeworks-advanced/tree/master/6.Web-scrapping',
+        'sec-ch-ua': '" Not A;Brand";v="99", "Chromium";v="98", "Google Chrome";v="98"',
+        'sec-ch-ua-mobile': '?0',
+        'sec-ch-ua-platform': '"Windows"',
+        'Sec-Fetch-Dest': 'document',
+        'Sec-Fetch-Mode': 'navigate',
+        'Sec-Fetch-Site': 'same-origin',
+        'Sec-Fetch-User': '?1',
+        'Upgrade-Insecure-Requests': '1',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36""'}
+    KEYWORDS = ['дизайн', 'фото', 'web', 'python', 'it']
 
-response = requests.get("https://habr.com/ru/all/", headers=HEADERS)
-response.raise_for_status()
-text = response.text
+    response = requests.get("https://habr.com/ru/all/", headers=HEADERS)
+    response.raise_for_status()
+    text = response.text
 
-soup = bs4.BeautifulSoup(text, features='html.parser')
-articles = soup.find_all('article', class_="tm-articles-list__item")
-get_the_right(articles, KEYWORDS)
+    soup = bs4.BeautifulSoup(text, features='html.parser')
+    articles = soup.find_all('article', class_="tm-articles-list__item")
+    get_the_right(articles, KEYWORDS)
